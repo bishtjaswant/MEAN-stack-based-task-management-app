@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Add new task</h1>
+<div mat-dialog-content>
+  <p>What's your title task?</p>
+  <mat-form-field>
+    <mat-label>write your task title </mat-label>
+    <input matInput required #title="ngModel" name="title" minlength='5' [(ngModel)]="data.title">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color='basic' (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color='primary' [disabled]="!title.valid" (click)="addTask(data)" >Add Task</button>
+</div>

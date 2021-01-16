@@ -1,0 +1,50 @@
+<div class="container">
+
+  <h2 class="text-center">mean stack development With jaswant</h2>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+      <app-add-task (addTaskEvent) = "render()"></app-add-task>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+          <!-- Position Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> title </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="isCompleted">
+            <th mat-header-cell *matHeaderCellDef> isCompleted </th>
+            <td mat-cell *matCellDef="let element">   <mat-slide-toggle
+          (change) = "changeStatus(element)" [checked]="element.isCompleted">Slide me!</mat-slide-toggle>            </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="updatedAt">
+            <th mat-header-cell *matHeaderCellDef> updatedAt </th>
+
+            <td mat-cell *matCellDef="let element"> {{element.updatedAt| date}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="action">
+              <th mat-header-cell  *matHeaderCellDef >action</th>
+              <td  mat-cell *matCellDef="let element" >
+
+                <button (click)="deleteTask(element)" mat-raised-button color="accent">Delete</button> </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </div>
+  </div>
+</div>
